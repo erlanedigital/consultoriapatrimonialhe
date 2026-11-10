@@ -1,0 +1,19 @@
+{
+  "name": "consultoriapatrimonialhe",
+  "version": "1.0.0",
+  "description": "Consultoria Patrimonial HE - Erlane Mota | Sua Própria Herança",
+  "type": "module",
+  "scripts": {
+    "build": "node -e \"const fs=require('fs'); if(!fs.existsSync('dist')) fs.mkdirSync('dist', {recursive:true}); if(!fs.existsSync('dist/assets')) fs.mkdirSync('dist/assets', {recursive:true}); ['index.html','styles.css','script.js','favicon.svg','_headers'].forEach(f => { if(fs.existsSync(f)) fs.copyFileSync(f, 'dist/' + f); }); if(fs.existsSync('assets')) { fs.readdirSync('assets').forEach(f => fs.copyFileSync('assets/' + f, 'dist/assets/' + f)); } console.log('Build completed to dist/');\"",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:pages": "npm run build && wrangler pages deploy dist --project-name consultoriapatrimonialhe"
+  },
+  "keywords": [
+    "consorcio",
+    "patrimonio",
+    "erlane-mota",
+    "engenharia-financeira"
+  ],
+  "author": "Erlane Mota",
+  "license": "ISC"
+}
