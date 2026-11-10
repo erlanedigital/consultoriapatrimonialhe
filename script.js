@@ -210,15 +210,20 @@ function initSimulator() {
     const rentEl = document.getElementById("sim-rent-val");
     const ctaBtn = document.getElementById("sim-whatsapp-cta");
 
-    const formatBRL = (val) => val.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+    const formatReais = (val) => `${val.toLocaleString("pt-BR")} reais`;
+    const formatCredit = (val) => {
+      if (val >= 1000000) return `${(val / 1000000).toLocaleString("pt-BR")} milhão de reais`;
+      if (val >= 1000 && val % 1000 === 0) return `${(val / 1000).toLocaleString("pt-BR")} mil reais`;
+      return `${val.toLocaleString("pt-BR")} reais`;
+    };
 
-    if (creditEl) creditEl.textContent = formatBRL(credit);
-    if (installmentEl) installmentEl.textContent = formatBRL(reducedInstallment);
-    if (agioEl) agioEl.textContent = formatBRL(estimatedAgio);
-    if (rentEl) rentEl.textContent = formatBRL(estimatedRent) + "/mês";
+    if (creditEl) creditEl.textContent = formatCredit(credit);
+    if (installmentEl) installmentEl.textContent = formatReais(reducedInstallment);
+    if (agioEl) agioEl.textContent = formatReais(estimatedAgio);
+    if (rentEl) rentEl.textContent = `${estimatedRent.toLocaleString("pt-BR")} reais/mês`;
 
     if (ctaBtn) {
-      const msg = `Olá Erlane! Simulei uma carta de ${formatBRL(credit)} com parcela reduzida de ${formatBRL(reducedInstallment)} no seu site. Gostaria de entender os detalhes do meu plano!`;
+      const msg = `Olá Erlane! Simulei uma carta de ${formatCredit(credit)} com parcela reduzida de ${formatReais(reducedInstallment)} no seu site. Gostaria de entender os detalhes do meu plano!`;
       ctaBtn.href = `https://wa.me/5538997373140?text=${encodeURIComponent(msg)}`;
     }
   };
