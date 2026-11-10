@@ -103,7 +103,6 @@
         <a href="#como-funciona" class="transition hover:text-[#5A1220]">Como funciona</a>
         <a href="#para-quem" class="transition hover:text-[#5A1220]">Para quem é</a>
         <a href="#estrategias" class="transition hover:text-[#5A1220]">Estratégias</a>
-        <a href="#simulador" class="transition hover:text-[#5A1220]">Simulador</a>
         <a href="#vantagens" class="transition hover:text-[#5A1220]">Vantagens</a>
         <a href="#sobre" class="transition hover:text-[#5A1220]">Sobre</a>
         <a href="#faq" class="transition hover:text-[#5A1220]">FAQ</a>
@@ -139,8 +138,6 @@
       <span class="text-[#C9A86A]">•</span>
       <a href="#estrategias" class="inline-block px-3 py-1 hover:text-[#5A1220]">Estratégias</a>
       <span class="text-[#C9A86A]">•</span>
-      <a href="#simulador" class="inline-block px-3 py-1 hover:text-[#5A1220]">Simulador</a>
-      <span class="text-[#C9A86A]">•</span>
       <a href="#vantagens" class="inline-block px-3 py-1 hover:text-[#5A1220]">Vantagens</a>
       <span class="text-[#C9A86A]">•</span>
       <a href="#sobre" class="inline-block px-3 py-1 hover:text-[#5A1220]">Sobre</a>
@@ -161,7 +158,6 @@
       <a href="#como-funciona" class="mobile-nav-link text-white/90 hover:text-[#E7D3A7]">Como funciona</a>
       <a href="#para-quem" class="mobile-nav-link text-white/90 hover:text-[#E7D3A7]">Para quem é</a>
       <a href="#estrategias" class="mobile-nav-link text-white/90 hover:text-[#E7D3A7]">Estratégias</a>
-      <a href="#simulador" class="mobile-nav-link text-white/90 hover:text-[#E7D3A7]">Simulador</a>
       <a href="#vantagens" class="mobile-nav-link text-white/90 hover:text-[#E7D3A7]">Vantagens</a>
       <a href="#sobre" class="mobile-nav-link text-white/90 hover:text-[#E7D3A7]">Sobre</a>
       <a href="#faq" class="mobile-nav-link text-white/90 hover:text-[#E7D3A7]">FAQ</a>
@@ -312,7 +308,7 @@
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3F0B17]">
           Para quem é a Consultoria Patrimonial?
         </h2>
-        <p class="text-sm sm:text-base text-[#5C474D] max-w-xl mx-auto">
+        <p class="text-sm sm:text-base text-[#5C474D] max-w-4xl mx-auto sm:whitespace-nowrap">
           Um plano desenhado sob medida para o seu momento de vida e capacidade financeira.
         </p>
       </div>
@@ -345,9 +341,9 @@
           <div class="grid h-12 w-12 place-items-center rounded-2xl bg-[#FFF9F2] text-[#5A1220] border border-[#E8DCC8] mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
           </div>
-          <h3 class="text-lg font-black text-[#5A1220] mb-3">Para quem quer usufruir em vida</h3>
+          <h3 class="text-lg font-black text-[#5A1220] mb-3">Para quem quer usufruir em vida, e viajar o mundo todo</h3>
           <p class="text-xs sm:text-sm leading-relaxed text-[#5C474D]">
-            Sua casa, sua renda e sua liberdade — para você viver com dignidade agora, e não apenas para esperar a velhice.
+            Sua casa, sua renda e sua liberdade — para você viver com dignidade agora, viajar o mundo todo e usufruir do seu patrimônio em vida.
           </p>
         </div>
 
@@ -463,100 +459,18 @@
     </div>
   </section>
 
-  <!-- 9. Seção Interativa: Simulador de Consórcio e Construção de Patrimônio -->
-  <section id="simulador" class="bg-white py-20 lg:py-28 border-y border-[#E8DCC8]">
-    <div class="mx-auto max-w-[1200px] px-4 sm:px-8">
-      <div class="mb-14 text-center space-y-3">
-        <span class="text-xs font-extrabold tracking-[0.2em] text-[#5A1220]">SIMULAÇÃO EM TEMPO REAL</span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3F0B17]">
-          Simule o seu plano de herança
-        </h2>
-        <p class="text-sm sm:text-base text-[#5C474D] max-w-xl mx-auto">
-          Arraste o slider para escolher o valor da carta de crédito desejada e veja a parcela reduzida estimada até a contemplação.
-        </p>
-      </div>
-
-      <div class="rounded-3xl border border-[#E8DCC8] bg-[#FFF9F2] p-6 sm:p-12 shadow-md">
-        <!-- Slider Control -->
-        <div class="space-y-4">
-          <div class="flex items-center justify-between">
-            <label for="sim-slider" class="text-xs sm:text-sm font-extrabold text-[#5A1220] uppercase tracking-wider">
-              Valor da Carta de Crédito
-            </label>
-            <span id="sim-credit-val" class="text-2xl sm:text-4xl font-extrabold text-[#3F0B17]">
-              100 mil reais
-            </span>
-          </div>
-
-          <input 
-            type="range" 
-            id="sim-slider" 
-            min="80000" 
-            max="1000000" 
-            step="10000" 
-            value="100000" 
-            class="w-full h-3 bg-[#E8DCC8] rounded-lg appearance-none cursor-pointer accent-[#5A1220]">
-
-          <div class="flex justify-between text-xs font-bold text-[#5C474D]">
-            <span>80 mil reais</span>
-            <span>500 mil reais</span>
-            <span>1 milhão de reais</span>
-          </div>
-        </div>
-
-        <!-- Resultados da Simulação -->
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-[#E8DCC8] pt-8">
-          <div class="rounded-2xl bg-white border border-[#E8DCC8] p-5 text-center shadow-sm">
-            <span class="block text-xs font-bold text-[#5C474D] uppercase tracking-wide">Parcela Reduzida (Até contemplar)</span>
-            <span id="sim-installment-val" class="mt-2 block text-2xl sm:text-3xl font-black text-[#5A1220]">
-              337 reais
-            </span>
-            <span class="text-[11px] text-[#5C474D] mt-1 block">Sem juros bancários</span>
-          </div>
-
-          <div class="rounded-2xl bg-white border border-[#E8DCC8] p-5 text-center shadow-sm">
-            <span class="block text-xs font-bold text-[#5C474D] uppercase tracking-wide">Potencial de Ágio Estimado</span>
-            <span id="sim-agio-val" class="mt-2 block text-2xl sm:text-3xl font-black text-[#C9A86A]">
-              25.000 reais
-            </span>
-            <span class="text-[11px] text-[#5C474D] mt-1 block">Lucro líquido estimado na venda</span>
-          </div>
-
-          <div class="rounded-2xl bg-white border border-[#E8DCC8] p-5 text-center shadow-sm">
-            <span class="block text-xs font-bold text-[#5C474D] uppercase tracking-wide">Potencial de Renda de Aluguel</span>
-            <span id="sim-rent-val" class="mt-2 block text-2xl sm:text-3xl font-black text-[#3F0B17]">
-              550 reais/mês
-            </span>
-            <span class="text-[11px] text-[#5C474D] mt-1 block">Renda passiva estimada</span>
-          </div>
-        </div>
-
-        <!-- Botão CTA Dinâmico do Simulador -->
-        <div class="mt-10 text-center">
-          <a 
-            id="sim-whatsapp-cta"
-            href="https://wa.me/5538997373140?text=Ol%C3%A1%20Erlane!%20Simulei%20uma%20carta%20no%20seu%20site%20e%20gostaria%20de%20conversar."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#5A1220] px-8 py-4 text-sm sm:text-base font-extrabold text-white shadow-lg shadow-[#5A1220]/25 transition hover:bg-[#3F0B17] hover:scale-105">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <span>Quero este plano no WhatsApp com a Erlane</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 10. Seção: "Vantagens & Segurança Bancária" -->
-  <section id="vantagens" class="bg-[#FFF9F2] py-20 lg:py-28">
+  <!-- 9. Seção: "Vantagens & Segurança Bancária" -->
+  <section id="vantagens" class="bg-white py-20 lg:py-28 border-t border-[#E8DCC8]">
     <div class="mx-auto max-w-[1600px] px-4 sm:px-8 lg:px-12">
       <div class="mb-14 text-center space-y-3">
         <span class="text-xs font-extrabold tracking-[0.2em] text-[#5A1220]">SEGURANÇA & DISCIPLINA</span>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3F0B17]">
           Por que construir patrimônio via consórcio?
         </h2>
-        <p class="text-sm sm:text-base text-[#5C474D] max-w-xl mx-auto">
+        <p class="text-sm sm:text-base text-[#5C474D] max-w-3xl mx-auto">
           Compare a economia real em relação a financiamentos bancários convencionais.
+        </p>
+      </div>
         </p>
       </div>
 

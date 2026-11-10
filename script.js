@@ -76,7 +76,6 @@ function sanitizeUrl(url) {
 document.addEventListener("DOMContentLoaded", () => {
   initStrategyTabs();
   initFaqAccordion();
-  initSimulator();
   initAdminModal();
   initMobileNav();
 });
@@ -189,50 +188,7 @@ function initFaqAccordion() {
   });
 }
 
-// 3. Simulador Interativo de Consórcio e Herança
-function initSimulator() {
-  const slider = document.getElementById("sim-slider");
-  if (!slider) return;
-
-  const updateSim = () => {
-    const credit = Number(slider.value);
-    
-    // Proporção baseada no case oficial: 100k -> 337 de parcela reduzida até a contemplação
-    const reducedInstallment = Math.round((credit / 100000) * 337);
-    // Estimativa de ágio médio de mercado na venda da carta contemplada (25%)
-    const estimatedAgio = Math.round(credit * 0.25);
-    // Estimativa de aluguel mensal pós aquisição (0.55% a.m.)
-    const estimatedRent = Math.round(credit * 0.0055);
-
-    const creditEl = document.getElementById("sim-credit-val");
-    const installmentEl = document.getElementById("sim-installment-val");
-    const agioEl = document.getElementById("sim-agio-val");
-    const rentEl = document.getElementById("sim-rent-val");
-    const ctaBtn = document.getElementById("sim-whatsapp-cta");
-
-    const formatReais = (val) => `${val.toLocaleString("pt-BR")} reais`;
-    const formatCredit = (val) => {
-      if (val >= 1000000) return `${(val / 1000000).toLocaleString("pt-BR")} milhão de reais`;
-      if (val >= 1000 && val % 1000 === 0) return `${(val / 1000).toLocaleString("pt-BR")} mil reais`;
-      return `${val.toLocaleString("pt-BR")} reais`;
-    };
-
-    if (creditEl) creditEl.textContent = formatCredit(credit);
-    if (installmentEl) installmentEl.textContent = formatReais(reducedInstallment);
-    if (agioEl) agioEl.textContent = formatReais(estimatedAgio);
-    if (rentEl) rentEl.textContent = `${estimatedRent.toLocaleString("pt-BR")} reais/mês`;
-
-    if (ctaBtn) {
-      const msg = `Olá Erlane! Simulei uma carta de ${formatCredit(credit)} com parcela reduzida de ${formatReais(reducedInstallment)} no seu site. Gostaria de entender os detalhes do meu plano!`;
-      ctaBtn.href = `https://wa.me/5538997373140?text=${encodeURIComponent(msg)}`;
-    }
-  };
-
-  slider.addEventListener("input", updateSim);
-  updateSim();
-}
-
-// 4. Menu Mobile
+// 3. Menu Mobile
 function initMobileNav() {
   const toggleBtn = document.getElementById("mobile-menu-btn");
   const menuDrawer = document.getElementById("mobile-menu-drawer");
