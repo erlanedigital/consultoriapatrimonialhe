@@ -233,14 +233,23 @@
         <div class="lg:col-span-5">
           <div class="relative mx-auto max-w-md lg:max-w-none">
             <div class="overflow-hidden rounded-[32px] border-4 border-white shadow-2xl shadow-[#5A1220]/20 bg-white">
-              <img 
-                src="assets/casa-heranca.webp" 
-                alt="Casa moderna com jardim, piscina e pôr do sol — a imagem da sua própria herança" 
-                class="h-[440px] sm:h-[500px] w-full object-cover transition-transform duration-500 hover:scale-105" 
-                loading="eager" 
-                decoding="async"
-                width="800" 
-                height="600">
+              <video 
+                autoplay 
+                loop 
+                muted 
+                playsinline 
+                poster="assets/casa-heranca.webp" 
+                class="h-[440px] sm:h-[500px] w-full object-cover transition-transform duration-500 hover:scale-105">
+                <source src="assets/casa-heranca.mp4" type="video/mp4">
+                <img 
+                  src="assets/casa-heranca.webp" 
+                  alt="Casa moderna com jardim, piscina e pôr do sol — a imagem da sua própria herança" 
+                  class="h-[440px] sm:h-[500px] w-full object-cover" 
+                  loading="eager" 
+                  decoding="async"
+                  width="800" 
+                  height="600">
+              </video>
             </div>
             <!-- Card Flutuante de Destaque -->
             <div class="absolute -bottom-6 -left-4 sm:-left-6 rounded-2xl border border-[#E8DCC8] bg-[#3F0B17] p-4 text-white shadow-xl max-w-xs">
@@ -503,6 +512,107 @@
           <p class="text-sm leading-relaxed text-[#5C474D]">
             Você decide se compra imóvel residencial, comercial, terreno, constrói, quita financiamento caro ou realiza o ágio em dinheiro na mão para novos projetos.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Seção: "Simulador de Parcelas Reduzidas" -->
+  <section id="simulador" class="bg-[#FAF6EF] py-20 lg:py-24 border-t border-[#E8DCC8] border-b relative">
+    <div class="sim-container">
+      <div class="text-center max-w-3xl mx-auto mb-10 px-4 space-y-3">
+        <span class="inline-flex items-center gap-2 rounded-full bg-[#5A1220] px-4 py-1.5 text-xs font-black tracking-widest text-[#F3E7C4] border border-[#C9A86A] shadow-md shadow-[#5A1220]/15">
+          <span>📊</span> SIMULADOR DE PARCELAS REDUZIDAS
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3F0B17] leading-tight">
+          Simule sua carta de crédito e veja o valor na sua moeda
+        </h2>
+        <div class="inline-flex items-center gap-2 rounded-full bg-[#5A1220]/10 px-4 py-1 text-xs font-bold text-[#5A1220] border border-[#C9A86A]/40 mt-2">
+          ℹ️ Valores estimados e aproximados conforme taxa de câmbio comercial e tabela vigente
+        </div>
+      </div>
+
+      <div class="sim-card">
+        <div class="sim-grid-layout">
+          <!-- Coluna 1: Controles -->
+          <div class="flex flex-col gap-6 justify-center w-full">
+            <div>
+              <div class="flex justify-between items-center mb-2.5 flex-wrap gap-2">
+                <label class="text-xs font-black uppercase tracking-wider text-[#5A1220]">1. Valor da Carta de Crédito:</label>
+                <span id="sim-credit-text" class="font-serif text-2xl font-bold text-[#5A1220]">R$ 100.000</span>
+              </div>
+              <div class="sim-credit-btns-row">
+                <button type="button" onclick="setSimCredit(100000)" class="sim-c-btn active py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#5A1220] bg-[#5A1220] text-[#F3E7C4] cursor-pointer transition">100 mil</button>
+                <button type="button" onclick="setSimCredit(150000)" class="sim-c-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition">150 mil</button>
+                <button type="button" onclick="setSimCredit(200000)" class="sim-c-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition">200 mil</button>
+                <button type="button" onclick="setSimCredit(300000)" class="sim-c-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition">300 mil</button>
+                <button type="button" onclick="setSimCredit(500000)" class="sim-c-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition">500 mil</button>
+              </div>
+              <input type="range" id="sim-range-credit" min="80000" max="1000000" step="10000" value="100000" oninput="setSimCreditFromSlider(this.value)" class="w-full accent-[#C9A86A] cursor-pointer h-2">
+              <div class="flex justify-between text-xs text-[#8A6E3E] mt-1 font-semibold">
+                <span>R$ 80 mil</span>
+                <span>R$ 500 mil</span>
+                <span>R$ 1 Milhão</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-2.5 flex-wrap gap-2">
+                <label class="text-xs font-black uppercase tracking-wider text-[#5A1220]">2. Prazo do Consórcio (até 220 meses):</label>
+                <span id="sim-months-text" class="text-sm font-extrabold text-[#5A1220]">220 meses</span>
+              </div>
+              <div class="sim-months-btns-row">
+                <button type="button" onclick="setSimMonths(150)" class="sim-m-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition">150 m</button>
+                <button type="button" onclick="setSimMonths(180)" class="sim-m-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition">180 m</button>
+                <button type="button" onclick="setSimMonths(200)" class="sim-m-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition">200 m</button>
+                <button type="button" onclick="setSimMonths(220)" class="sim-m-btn active py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#5A1220] bg-[#5A1220] text-[#F3E7C4] cursor-pointer transition">220 meses</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-black uppercase tracking-wider text-[#5A1220] mb-2">3. Sua moeda de ganho no exterior:</label>
+              <select id="sim-currency-sel" onchange="setSimCurrency(this.value)" class="w-full bg-[#FAF6EF] border-2 border-[#C9A86A] rounded-xl p-3 text-sm font-bold text-[#5A1220] outline-none cursor-pointer">
+                <option value="EUR">🇪🇺 Euro (EUR €)</option>
+                <option value="USD">🇺🇸 Dólar Americano (USD $)</option>
+                <option value="GBP">🇬🇧 Libra Esterlina (GBP £)</option>
+                <option value="CHF">🇨🇭 Franco Suíço (CHF)</option>
+                <option value="JPY">🇯🇵 Iene Japonês (JPY ¥)</option>
+                <option value="AUD">🇦🇺 Dólar Australiano (AUD A$)</option>
+                <option value="CAD">🇨🇦 Dólar Canadense (CAD C$)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Card de Resultado em Destaque -->
+          <div class="rounded-2xl border-2 border-[#C9A86A] p-6 sm:p-8 bg-gradient-to-br from-[#5A1220] to-[#3D0C16] text-white flex flex-col justify-between gap-5 shadow-xl shadow-[#5A1220]/30">
+            <div>
+              <div class="inline-block px-3 py-1 rounded-full bg-[#C9A86A] text-[#5A1220] text-[10px] font-black tracking-widest uppercase mb-3">★ PARCELA REDUZIDA ATÉ A CONTEMPLAÇÃO</div>
+              <div class="text-xs text-white/80 mb-1">Seu investimento mensal em Reais:</div>
+              <div id="sim-reais-val" class="font-serif text-3xl sm:text-4xl font-bold text-[#F3E7C4]">R$ 336,36 <span class="text-sm font-normal text-white/70">/mês</span></div>
+            </div>
+
+            <div class="pt-3.5 border-t border-[#C9A86A]/30">
+              <div id="sim-foreign-title" class="text-xs font-black uppercase tracking-wider text-[#C9A86A] mb-1">Equivalente no exterior em Euro:</div>
+              <div id="sim-foreign-val" class="font-serif text-3xl sm:text-4xl font-extrabold text-[#F3E7C4] leading-tight">€ 57,50 <span class="text-base font-normal text-white/70">/mês</span></div>
+              <div class="text-xs text-white/75 mt-2 leading-relaxed">Um esforço financeiro acessível ganhando em moeda forte, com o poder de alavancagem do consórcio no Brasil.</div>
+            </div>
+
+            <div class="bg-white/10 rounded-xl p-3 text-[11px] text-white/75 leading-relaxed">
+              * Valores aproximados com base em taxas médias e cotação de referência. Na contemplação, a parcela passa a ser no valor integral.
+            </div>
+
+            <div>
+              <button type="button" onclick="sendSimToWhatsApp()" class="w-full py-4 px-5 rounded-full bg-[#C9A86A] text-[#5A1220] text-sm font-extrabold cursor-pointer transition hover:bg-[#E7D3A7] flex items-center justify-center gap-2 shadow-lg shadow-black/20">
+                <span>Simular Esta Carta no WhatsApp</span>
+                <span class="text-lg">➔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-5 border-t border-[#C9A86A]/30">
+          <div class="text-xs font-black uppercase tracking-wider text-[#5A1220] mb-3 text-center">🌐 Comparativo do Esforço Mensal Reduzido em Todas as Moedas:</div>
+          <div id="sim-multi-currency-grid" class="sim-multicurrency-grid-row"></div>
         </div>
       </div>
     </div>

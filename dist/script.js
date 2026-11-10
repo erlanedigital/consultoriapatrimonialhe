@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion();
   initAdminModal();
   initMobileNav();
+  updateSimulatorUI();
 });
 
 // 1. Gestão das Abas de Estratégias
@@ -401,3 +402,154 @@ async function changeAdminPassword(e) {
   }
   document.getElementById("change-pass-form").reset();
 }
+
+// ==========================================================================
+// Simulador de Parcelas Reduzidas (Fiel ao consultoriapatrimonialbe)
+// ==========================================================================
+const CURRENCIES = {
+  EUR: { name: 'Euro', symbol: '€', flag: '🇪🇺', rate: 5.85 },
+  USD: { name: 'Dólar Americano', symbol: '$', flag: '🇺🇸', rate: 5.60 },
+  GBP: { name: 'Libra Esterlina', symbol: '£', flag: '🇬🇧', rate: 7.05 },
+  CHF: { name: 'Franco Suíço', symbol: 'CHF', flag: '🇨🇭', rate: 6.30 },
+  JPY: { name: 'Iene Japonês', symbol: '¥', flag: '🇯🇵', rate: 0.037 },
+  AUD: { name: 'Dólar Australiano', symbol: 'A$', flag: '🇦🇺', rate: 3.70 },
+  CAD: { name: 'Dólar Canadense', symbol: 'C$', flag: '🇨🇦', rate: 4.10 }
+};
+
+const simState = {
+  credit: 100000,
+  months: 220,
+  currency: 'EUR'
+};
+
+function calculateForeign(valBrl, currCode) {
+  const c = CURRENCIES[currCode] || CURRENCIES.EUR;
+  if (!c || !c.rate) return 0;
+  return valBrl / c.rate;
+}
+
+function calculateSim(credit, months) {
+  const adminFeeMonthly = (credit * 0.24) / months;
+  const amortReduced = (credit * 0.50) / months;
+  const reducedTotal = amortReduced + adminFeeMonthly;
+  const integralTotal = (credit / months) + adminFeeMonthly;
+
+  return {
+    adminFeeMonthly,
+    amortReduced,
+    reducedTotal,
+    integralTotal
+  };
+}
+
+function updateSimulatorUI() {
+  const calc = calculateSim(simState.credit, simState.months);
+  const curr = CURRENCIES[simState.currency] || CURRENCIES.EUR;
+
+  const cText = document.getElementById('sim-credit-text');
+  if (cText) cText.textContent = 'R$ ' + simState.credit.toLocaleString('pt-BR');
+
+  const mText = document.getElementById('sim-months-text');
+  if (mText) mText.textContent = simState.months + ' meses';
+
+  const rVal = document.getElementById('sim-reais-val');
+  if (rVal) {
+    rVal.innerHTML = 'R$ ' + calc.reducedTotal.toFixed(2).replace('.', ',') + ' <span class="text-sm font-normal text-white/70">/mês</span>';
+  }
+
+  const fTitle = document.getElementById('sim-foreign-title');
+  if (fTitle) {
+    fTitle.textContent = 'Equivalente no exterior em ' + curr.name + ':';
+  }
+
+  const fVal = calculateForeign(calc.reducedTotal, simState.currency);
+  const fStr = (simState.currency === 'JPY')
+    ? Math.round(fVal).toLocaleString('pt-BR')
+    : fVal.toFixed(2).replace('.', ',');
+
+  const fValEl = document.getElementById('sim-foreign-val');
+  if (fValEl) {
+    fValEl.innerHTML = curr.symbol + ' ' + fStr + ' <span class="text-base font-normal text-white/70">/mês</span>';
+  }
+
+  const range = document.getElementById('sim-range-credit');
+  if (range && Number(range.value) !== simState.credit) range.value = simState.credit;
+
+  const sel = document.getElementById('sim-currency-sel');
+  if (sel && sel.value !== simState.currency) sel.value = simState.currency;
+
+  const grid = document.getElementById('sim-multi-currency-grid');
+  if (grid) {
+    grid.innerHTML = Object.keys(CURRENCIES).map(function(k) {
+      const c = CURRENCIES[k];
+      const v = calculateForeign(calc.reducedTotal, k);
+      const s = (k === 'JPY') ? Math.round(v).toLocaleString('pt-BR') : v.toFixed(0);
+      const isSel = (k === simState.currency);
+      return `<div onclick="setSimCurrency('${k}')" class="cursor-pointer transition-all duration-200 rounded-2xl p-2.5 text-center select-none ${isSel ? 'bg-[#5A1220] border-2 border-[#C9A86A] text-[#F3E7C4] shadow-md shadow-[#5A1220]/25' : 'bg-white border border-[#C9A86A]/40 text-[#5A1220] hover:border-[#5A1220] shadow-sm'}">
+        <div class="text-[11px] font-black uppercase">${c.flag} ${k}</div>
+        <div class="font-serif text-base font-bold mt-1">${c.symbol} ${s}<span class="text-[10px] font-normal opacity-80">/mês</span></div>
+      </div>`;
+    }).join('');
+  }
+}
+
+window.setSimCredit = function(val) {
+  simState.credit = Number(val);
+  document.querySelectorAll('.sim-c-btn').forEach(function(b) {
+    const isTarget = b.textContent.includes(String(val / 1000));
+    b.className = isTarget 
+      ? "sim-c-btn active py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#5A1220] bg-[#5A1220] text-[#F3E7C4] cursor-pointer transition"
+      : "sim-c-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition";
+  });
+  updateSimulatorUI();
+};
+
+window.setSimCreditFromSlider = function(val) {
+  simState.credit = Number(val);
+  document.querySelectorAll('.sim-c-btn').forEach(function(b) {
+    const isTarget = b.textContent.includes(String(val / 1000));
+    b.className = isTarget 
+      ? "sim-c-btn active py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#5A1220] bg-[#5A1220] text-[#F3E7C4] cursor-pointer transition"
+      : "sim-c-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition";
+  });
+  updateSimulatorUI();
+};
+
+window.setSimMonths = function(val) {
+  simState.months = Number(val);
+  document.querySelectorAll('.sim-m-btn').forEach(function(b) {
+    const isTarget = b.textContent.includes(String(val));
+    b.className = isTarget
+      ? "sim-m-btn active py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#5A1220] bg-[#5A1220] text-[#F3E7C4] cursor-pointer transition"
+      : "sim-m-btn py-2.5 px-2 rounded-xl text-xs font-extrabold border border-[#C9A86A]/40 bg-[#FAF6EF] text-[#5A1220] cursor-pointer transition";
+  });
+  updateSimulatorUI();
+};
+
+window.setSimCurrency = function(val) {
+  if (!CURRENCIES[val]) return;
+  simState.currency = val;
+  const sel = document.getElementById('sim-currency-sel');
+  if (sel && sel.value !== val) sel.value = val;
+  updateSimulatorUI();
+};
+
+window.sendSimToWhatsApp = function() {
+  const res = calculateSim(simState.credit, simState.months);
+  const curr = CURRENCIES[simState.currency] || CURRENCIES.EUR;
+  const fVal = res.reducedTotal / curr.rate;
+  const fStr = (simState.currency === 'JPY') ? Math.round(fVal).toLocaleString('pt-BR') : fVal.toFixed(2).replace('.', ',');
+
+  const msg = [
+    'Olá, Erlane! Fiz uma simulação no site com parcela reduzida:',
+    '',
+    '• *Carta de Crédito:* R$ ' + simState.credit.toLocaleString('pt-BR'),
+    '• *Prazo do Plano:* ' + simState.months + ' meses',
+    '• *Parcela Reduzida (até a contemplação):* R$ ' + res.reducedTotal.toFixed(2).replace('.', ',') + ' / mês',
+    '• *Equivalente na minha moeda (' + curr.name + '):* ' + curr.symbol + ' ' + fStr + ' / mês',
+    '',
+    'Gostaria de tirar dúvidas sobre este grupo e ver como começar!'
+  ].join('\n');
+
+  window.open('https://wa.me/5538997373140?text=' + encodeURIComponent(msg), '_blank');
+};
