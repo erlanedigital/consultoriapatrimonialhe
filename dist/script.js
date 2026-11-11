@@ -8,10 +8,9 @@ const STRATEGIES = [
   {
     id: "agio",
     tab: "Estratégia do Ágio / Lucro",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#C9A86A]"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
     title: "Sua carta pode virar dinheiro para você usar como quiser.",
     text: "Quando você for contemplada, você pode vender sua carta e receber o ágio/lucro em dinheiro para você usar como quiser. Depois que você vende e recebe, este consórcio acaba e você já pode comprar outro e reiniciar o ciclo.",
-    htmlText: "Quando você for <strong class=\"text-[#5A1220] font-extrabold\">contemplada</strong>, você pode <strong class=\"text-[#5A1220] font-extrabold\">vender sua carta</strong> e <strong class=\"text-[#5A1220] font-extrabold\">receber o ágio/lucro em dinheiro</strong> para você usar como quiser. Depois que você vende e recebe, este consórcio acaba e você já pode <strong class=\"text-[#5A1220] font-extrabold\">comprar outro e reiniciar o ciclo</strong>.",
     points: [
       "Você decide com estratégia quando realizar o lucro",
       "Um ciclo termina com capital líquido na mão e outro pode começar",
@@ -22,10 +21,9 @@ const STRATEGIES = [
   {
     id: "aluguel",
     tab: "Estratégia do Aluguel",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#C9A86A]"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`,
     title: "Sua carta pode virar a sua casa — ou a sua renda.",
     text: "Ou você pode comprar seu imóvel e morar na sua própria casa, que é a sua herança. Ou pode colocar para alugar e ter a sua renda passiva mensal ajudando a pagar as parcelas restantes ou construindo sua tranquilidade financeira.",
-    htmlText: "Ou você pode <strong class=\"text-[#5A1220] font-extrabold\">comprar seu imóvel e morar na sua própria casa</strong>, que é a sua herança. Ou pode <strong class=\"text-[#5A1220] font-extrabold\">colocar para alugar</strong> e ter a sua <strong class=\"text-[#5A1220] font-extrabold\">renda passiva mensal</strong> ajudando a pagar as parcelas restantes ou construindo sua tranquilidade financeira.",
     points: [
       "Imóvel registrado 100% no seu nome, para você",
       "Renda de locação que se paga e gera fluxo de caixa positivo",
@@ -36,10 +34,9 @@ const STRATEGIES = [
   {
     id: "renda-fixa",
     tab: "Consórcio + Renda Fixa",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#C9A86A]"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
     title: "Enquanto seu consórcio anda, seu dinheiro guardado rende.",
     text: "Enquanto seu consórcio anda com parcelas reduzidas até a contemplação, o dinheiro da sua reserva rende em renda fixa de alta liquidez. Juntos, aceleram sua herança para você usufruir — cada parte com a sua função estratégica no seu plano.",
-    htmlText: "Enquanto seu consórcio anda com <strong class=\"text-[#5A1220] font-extrabold\">parcelas reduzidas até a contemplação</strong>, o dinheiro da sua reserva rende em <strong class=\"text-[#5A1220] font-extrabold\">renda fixa de alta liquidez</strong>. Juntos, aceleram sua herança para você usufruir — cada parte com a sua <strong class=\"text-[#5A1220] font-extrabold\">função estratégica no seu plano</strong>.",
     points: [
       "Disciplina inteligente para construir patrimônio sem descapitalizar",
       "Sua reserva de emergência trabalhando e rendendo ao seu lado",
@@ -105,14 +102,14 @@ function renderStrategy() {
   const contentContainer = document.getElementById("strategy-content");
   if (!tabsContainer || !contentContainer) return;
 
-  // Render buttons com cor sólida quando selecionado (NUNCA fica branco no branco)
+  // Render buttons com cor sólida nobre (NUNCA fica branco no branco)
   tabsContainer.innerHTML = STRATEGIES.map((s, idx) => {
     const isActive = idx === activeStrategyIndex;
     return `
       <button 
         type="button"
         onclick="selectStrategy(${idx})" 
-        class="rounded-full px-5 py-3 text-xs sm:text-sm font-extrabold transition-all duration-200 cursor-pointer ${
+        class="rounded-full px-5 py-3 text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
           isActive 
             ? "bg-[#5A1220] text-[#F3E7C4] border-2 border-[#C9A86A] shadow-md shadow-[#5A1220]/25 scale-105" 
             : "bg-[#FAF6EF] text-[#5A1220] hover:bg-white border border-[#C9A86A]/40"
@@ -122,7 +119,7 @@ function renderStrategy() {
     `;
   }).join("");
 
-  // Render Content Card (100% no padrão de luxo do site)
+  // Render Content Card (design elegante, limpo e botão centralizado)
   contentContainer.innerHTML = `
     <div class="animate-fade-in space-y-6">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -136,8 +133,8 @@ function renderStrategy() {
         </div>
       </div>
 
-      <p class="text-sm sm:text-base leading-relaxed text-[#6B5A5E] text-justify" style="text-align: justify !important; text-justify: inter-word !important;">
-        ${data.htmlText || escapeHTML(data.text)}
+      <p class="text-sm sm:text-base leading-relaxed text-[#2B1A1E] text-justify font-normal" style="text-align: justify !important; text-justify: inter-word !important;">
+        ${escapeHTML(data.text)}
       </p>
 
       <div class="pt-4 border-t border-[#C9A86A]/25 space-y-3">
@@ -146,17 +143,18 @@ function renderStrategy() {
             <div class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#5A1220] text-[#E4C98E] shadow-sm">
               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <span class="text-xs sm:text-sm font-semibold text-[#2B1A1E]">${escapeHTML(pt)}</span>
+            <span class="text-xs sm:text-sm font-medium text-[#2B1A1E]">${escapeHTML(pt)}</span>
           </div>
         `).join("")}
       </div>
 
-      <div class="pt-4">
+      <!-- Botão Centralizado -->
+      <div class="pt-6 flex justify-center text-center">
         <a 
           href="https://wa.me/5538997373140?text=${encodeURIComponent('Olá Erlane! Quero entender mais sobre a ' + data.tab + ' no WhatsApp.')}"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-[#5A1220] px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-lg border border-[#C9A86A]/40 transition hover:bg-[#6E1A2B] hover:scale-[1.02]">
+          class="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-[#5A1220] px-8 py-4 text-sm sm:text-base font-bold text-white shadow-lg border border-[#C9A86A]/40 transition hover:bg-[#6E1A2B] hover:scale-[1.02]">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           <span>${escapeHTML(data.ctaText)}</span>
         </a>

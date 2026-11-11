@@ -49,21 +49,29 @@ h1, h2, h3, .font-serif {
   z-index: -9999 !important;
 }
 
-/* Justificação mandatória de TODOS os corpos de texto (Regra Pétrea) */
-p, .faq-answer, .text-justify, article p, section p, .card p {
-  text-align: justify !important;
-  text-justify: inter-word !important;
-  -webkit-text-align-last: left;
-  text-align-last: left;
-}
-
-/* Títulos, badges e elementos de controle mantêm alinhamento central */
-.text-center:not(p),
+/* Alinhamento estritamente centralizado para cabeçalhos, títulos e subtítulos de seções */
+.text-center,
+.text-center p,
+p.text-center,
+.section-header,
+.section-header p,
 h1.text-center,
 h2.text-center,
 h3.text-center,
 span.text-center {
-  text-align: center;
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* Justificação impecável de corpos de texto explicativos e FAQ */
+p.text-justify,
+.text-justify,
+.faq-answer,
+.vision-text p {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  -webkit-text-align-last: left;
+  text-align-last: left;
 }
 
 .text-left, p.text-left {
