@@ -598,3 +598,44 @@ window.openAdminModal = function() {
   }
 };
 window.openAdminLogin = window.openAdminModal;
+
+// Envio do Formulário de Diagnóstico Gratuito com Redirecionamento ao WhatsApp e Registro de Lead
+window.submitLeadForm = function(event) {
+  event.preventDefault();
+  const nomeEl = document.getElementById('lead-nome');
+  const whatsappEl = document.getElementById('lead-whatsapp');
+  const moraEl = document.getElementById('lead-mora');
+  const objetivoEl = document.getElementById('lead-objetivo');
+  const errEl = document.getElementById('lead-form-error');
+
+  const nome = nomeEl ? nomeEl.value.trim() : '';
+  const whatsapp = whatsappEl ? whatsappEl.value.trim() : '';
+  const mora = moraEl ? moraEl.value : '';
+  const objetivo = objetivoEl ? objetivoEl.value : '';
+
+  if (!nome || !whatsapp || !mora || !objetivo) {
+    if (errEl) {
+      errEl.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+      errEl.classList.remove('hidden');
+    }
+    return;
+  }
+
+  if (errEl) errEl.classList.add('hidden');
+
+  try {
+    const leads = JSON.parse(localStorage.getItem('erlane_leads') || '[]');
+    leads.unshift({
+      nome,
+      whatsapp,
+      mora,
+      objetivo,
+      data: new Date().toLocaleString('pt-BR')
+    });
+    localStorage.setItem('erlane_leads', JSON.stringify(leads));
+  } catch(e) {}
+
+  const msg = 'Olá Erlane! Meu nome é ' + nome + '. Moro em: ' + mora + '. Meu objetivo é: ' + objetivo + '. Vim pelo formulário do site para receber meu diagnóstico gratuito.';
+  const url = 'https://wa.me/5538997373140?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+};

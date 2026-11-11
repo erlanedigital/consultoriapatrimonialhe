@@ -210,3 +210,21 @@ h2, .h2 {
 h3, .h3 {
   line-height: 1.42 !important;
 }
+
+/* Justificação Universal para Todos os Quadrados e Cards do Site */
+article p,
+[class*="rounded-[20px]"] p,
+[class*="rounded-[24px]"] p,
+[class*="rounded-[28px]"] p,
+[class*="rounded-2xl"] p,
+[class*="rounded-3xl"] p,
+.card-shadow p,
+p.text-justify,
+.text-justify {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  -webkit-text-align-last: left !important;
+  text-align-last: left !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
