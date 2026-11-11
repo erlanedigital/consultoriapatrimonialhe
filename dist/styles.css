@@ -4,12 +4,16 @@
   --forest: #5A1220;
   --forest-2: #6E1A2B;
   --forest-3: #3D0C16;
+  --wine: #5A1220;
+  --wine-2: #6E1A2B;
+  --wine-3: #3D0C16;
   --gold: #C9A86A;
   --gold-2: #E4C98E;
   --cream: #FAF6EF;
   --cream-2: #F1E9DA;
   --ink: #2B1A1E;
   --muted: #6B5A5E;
+  --border: #E8DCC8;
   --line: rgba(90, 18, 32, 0.14);
   --line-gold: rgba(201, 168, 106, 0.35);
   --surface: #FAF6EF;
@@ -45,21 +49,21 @@ h1, h2, h3, .font-serif {
   z-index: -9999 !important;
 }
 
-/* Justificação mandatória de todos os corpos de texto */
-p, .faq-answer {
-  text-align: justify;
-  text-justify: inter-word;
+/* Justificação mandatória de TODOS os corpos de texto (Regra Pétrea) */
+p, .faq-answer, .text-justify, article p, section p, .card p {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  -webkit-text-align-last: left;
+  text-align-last: left;
 }
 
-/* Preserva alinhamento intencional de títulos, badges, botões e tags de destaque */
-.text-center,
-.text-center p,
-p.text-center,
-header p,
-footer p,
-#admin-modal p,
-.banner-cta p {
-  text-align: center !important;
+/* Títulos, badges e elementos de controle mantêm alinhamento central */
+.text-center:not(p),
+h1.text-center,
+h2.text-center,
+h3.text-center,
+span.text-center {
+  text-align: center;
 }
 
 .text-left, p.text-left {
