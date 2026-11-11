@@ -553,3 +553,37 @@ window.sendSimToWhatsApp = function() {
 
   window.open('https://wa.me/5538997373140?text=' + encodeURIComponent(msg), '_blank');
 };
+
+// Global PWA and Admin triggers
+let deferredPwaPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPwaPrompt = e;
+});
+
+window.triggerPwaInstall = function() {
+  if (deferredPwaPrompt) {
+    deferredPwaPrompt.prompt();
+    deferredPwaPrompt.userChoice.then(() => {
+      deferredPwaPrompt = null;
+    });
+  } else {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+      alert('📲 Como instalar no seu iPhone / iPad:\n\n1. Toque no botão de compartilhar (ícone ⎋)\n2. Role para baixo e selecione "Adicionar à Tela de Início"');
+    } else {
+      alert('📲 Como instalar no seu aparelho:\n\n1. Toque nos três pontinhos (menu) do seu navegador\n2. Selecione "Instalar aplicativo" ou "Adicionar à tela inicial"');
+    }
+  }
+};
+
+window.openAdminModal = function() {
+  const modal = document.getElementById('admin-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    const passInput = document.getElementById('admin-pass-input');
+    if (passInput) passInput.focus();
+  }
+};
+window.openAdminLogin = window.openAdminModal;
