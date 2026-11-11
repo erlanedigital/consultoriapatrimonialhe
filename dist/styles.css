@@ -181,3 +181,32 @@ p.text-justify,
 .animate-fade-in {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Admin Modal Centering */
+#admin-modal {
+  display: none;
+}
+
+#admin-modal.flex,
+#admin-modal:not(.hidden) {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#admin-modal > div {
+  margin: auto !important;
+}
+
+/* Espaçamento generoso e nobre para todos os títulos serifados */
+h1, .h1 {
+  line-height: 1.28 !important;
+}
+
+h2, .h2 {
+  line-height: 1.38 !important;
+}
+
+h3, .h3 {
+  line-height: 1.42 !important;
+}

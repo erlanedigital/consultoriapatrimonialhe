@@ -590,6 +590,9 @@ window.openAdminModal = function() {
   if (modal) {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
     const passInput = document.getElementById('admin-pass-input');
     if (passInput) passInput.focus();
   }
